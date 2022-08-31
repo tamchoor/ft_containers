@@ -7,7 +7,7 @@ You have to take the structure of each standard container as reference. If a par
 
 As a reminder, you have to comply with the C++98 standard, so any later feature of the containers MUST NOT be implemented, but every C++98 feature (even deprecated ones) is expected.
 
-							#Mandatory part
+		#Mandatory part
 
 Implement the following containers and turn in the necessary <container>.hpp files with a Makefile:
 
@@ -40,7 +40,7 @@ Yes, it is C++11 but you will be able to implement it in a C++98 manner. This is
 
 • std::make_pair
 
-						Requirements
+		Requirements
 
 The namespace must be ft.
 
@@ -62,7 +62,7 @@ means using a simple array for map is not ok).
 • Of course, for the implementation of map::value_compare, the keyword friend is allowed.
 
 
-							Testing
+		Testing
 
 
 You must also provide tests, at least a main.cpp, for your defense. You have to go further than the main given as example!
@@ -75,7 +75,7 @@ You must also provide tests, at least a main.cpp, for your defense. You have to 
 
 
 
-#Bonus part
+		Bonus part
 
 You will get extra points if you implement one last container:
 
