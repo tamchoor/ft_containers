@@ -1,0 +1,64 @@
+-VECTOR REVERSE ITER TEST-
+
+./tmp/outfile_vec_13.cpp:33:37: error: use of undeclared identifier 'its_rb'; did you mean 'it_rb'?
+                ft::vector<int>::reverse_iterator its_rb = v2.rbegin();
+                                                  ^~~~~~
+                                                  it_rb
+./tmp/outfile_vec_13.cpp:31:38: note: 'it_rb' declared here
+                std::vector<int>::reverse_iterator it_rb = v1.rbegin();
+                                                   ^
+./tmp/outfile_vec_13.cpp:33:36: error: expected ';' after expression
+                ft::vector<int>::reverse_iterator its_rb = v2.rbegin();
+                                                 ^
+                                                 ;
+./tmp/outfile_vec_13.cpp:33:20: error: no member named 'reverse_iterator' in 'ft::vector<int>'
+                ft::vector<int>::reverse_iterator its_rb = v2.rbegin();
+                ~~~~~~~~~~~~~~~~~^
+./tmp/outfile_vec_13.cpp:33:49: error: no member named 'rbegin' in 'ft::vector<int>'
+                ft::vector<int>::reverse_iterator its_rb = v2.rbegin();
+                                                           ~~ ^
+./tmp/outfile_vec_13.cpp:34:37: error: use of undeclared identifier 'its_re'; did you mean 'it_re'?
+                ft::vector<int>::reverse_iterator its_re = v2.rend();
+                                                  ^~~~~~
+                                                  it_re
+./tmp/outfile_vec_13.cpp:32:38: note: 'it_re' declared here
+                std::vector<int>::reverse_iterator it_re = v1.rend();
+                                                   ^
+./tmp/outfile_vec_13.cpp:34:36: error: expected ';' after expression
+                ft::vector<int>::reverse_iterator its_re = v2.rend();
+                                                 ^
+                                                 ;
+./tmp/outfile_vec_13.cpp:34:20: error: no member named 'reverse_iterator' in 'ft::vector<int>'
+                ft::vector<int>::reverse_iterator its_re = v2.rend();
+                ~~~~~~~~~~~~~~~~~^
+./tmp/outfile_vec_13.cpp:34:49: error: no member named 'rend' in 'ft::vector<int>'
+                ft::vector<int>::reverse_iterator its_re = v2.rend();
+                                                           ~~ ^
+./tmp/outfile_vec_13.cpp:36:18: error: use of undeclared identifier 'its_rb'; did you mean 'it_rb'?
+                if (*it_rb != *its_rb)
+                               ^~~~~~
+                               it_rb
+./tmp/outfile_vec_13.cpp:31:38: note: 'it_rb' declared here
+                std::vector<int>::reverse_iterator it_rb = v1.rbegin();
+                                                   ^
+./tmp/outfile_vec_13.cpp:38:24: error: use of undeclared identifier 'its_rb'; did you mean 'it_rb'?
+                if (it_rb - it_re != its_rb - its_re)
+                                     ^~~~~~
+                                     it_rb
+./tmp/outfile_vec_13.cpp:31:38: note: 'it_rb' declared here
+                std::vector<int>::reverse_iterator it_rb = v1.rbegin();
+                                                   ^
+./tmp/outfile_vec_13.cpp:38:33: error: use of undeclared identifier 'its_re'; did you mean 'it_re'?
+                if (it_rb - it_re != its_rb - its_re)
+                                              ^~~~~~
+                                              it_re
+./tmp/outfile_vec_13.cpp:32:38: note: 'it_re' declared here
+                std::vector<int>::reverse_iterator it_re = v1.rend();
+                                                   ^
+./tmp/outfile_vec_13.cpp:40:12: error: no member named 'equal' in namespace 'ft'
+                if (!ft::equal(it_rb, it_re, its_rb))
+                     ~~~~^
+./tmp/outfile_vec_13.cpp:40:32: error: use of undeclared identifier 'its_rb'
+                if (!ft::equal(it_rb, it_re, its_rb))
+                                             ^
+13 errors generated.

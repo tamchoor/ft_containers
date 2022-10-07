@@ -1,0 +1,12 @@
+-VECTOR ASSIGN NUM TEST-
+
+./tmp/outfile_vec_19.cpp:28:6: error: no member named 'assign' in 'ft::vector<int>'
+                v2.assign(num, fill);
+                ~~ ^
+./tmp/outfile_vec_19.cpp:46:42: error: no member named 'begin' in 'ft::vector<int>'
+                if (!std::equal(v1.begin(),v1.end(),v2.begin()))
+                                                    ~~ ^
+./tmp/outfile_vec_19.cpp:66:6: error: no member named 'assign' in 'ft::vector<int>'
+                v2.assign(N * N, M);
+                ~~ ^
+3 errors generated.

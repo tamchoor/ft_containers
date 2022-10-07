@@ -1,6 +1,14 @@
 #include <vector>
 #include <iostream>
 
+	void print_vector(std::vector<int> &vec)
+	{
+		std::vector<int>::iterator it = vec.begin();
+        for (;it !=  vec.end(); it++)
+            std::cout << *it << ' ';
+		std::cout << '\n';
+	};
+
 int main()
 {
 
@@ -59,47 +67,61 @@ int main()
 	std::cout << "\nTest vector with one elem\n";
 
 	std::vector<int> vec = std::vector<int>(6, 99);;
-	// vec.push_back(5);
-	// vec.push_back(6);
-	// vec.push_back(7);
-	// vec.reserve(1000);
 	std::cout << vec.data() << " = data address\n";
-	// vec[0] = 5;
-	// vec[1] = 7;
-	std::cout << vec[0] << "\n";
-	std::cout << vec[1] << "\n";
-
-	std::cout << vec.size() << " = size \n";
-	std::cout << vec.capacity() << " = capacity \n";
-	vec.clear();
-	std::cout << vec.data() << " = data address\n";
-	std::cout << vec[0] << "\n";
-	std::cout << vec[1] << "\n";
-	std::cout << vec.size() << " = size \n";
-	std::cout << vec.capacity() << " = capacity \n";
-	vec.push_back(55);
-	vec.push_back(66);
-
-	vec.reserve(100);
-	std::cout << vec.data() << " = data address\n";
-	std::cout << vec[0] << "\n";
-	std::cout << vec[1] << "\n";
+	print_vector(vec);
 	std::cout << vec.size() << " = size \n";
 	std::cout << vec.capacity() << " = capacity \n";
 
-	vec.pop_back();
-	vec.pop_back();
-		std::cout << vec[0] << "\n";
-	std::cout << vec[1] << "\n";
+	std::vector<int> vec2 = vec;
+	std::cout << vec2.data() << " = data address\n";
+	print_vector(vec2);
+	std::cout << vec2.size() << " = size \n";
+	std::cout << vec2.capacity() << " = capacity \n";
+
+
+	// vec.assign(3, 6);
+	// print_vector(vec);
+	// std::cout << vec.size() << " = size \n";
+	// std::cout << vec.capacity() << " = capacity \n";
+
+	// vec.assign(13, 16);
+	// print_vector(vec);
+	// std::cout << vec.size() << " = size \n";
+	// std::cout << vec.capacity() << " = capacity \n";
+
+	// vec.assign(3, 1);
+	// print_vector(vec);
+	// std::cout << vec.size() << " = size \n";
+	// std::cout << vec.capacity() << " = capacity \n";
+	// vec.clear();
+	// std::cout << vec.data() << " = data address\n";
+	// std::cout << vec[0] << "\n";
+	// std::cout << vec[1] << "\n";
+	// std::cout << vec.size() << " = size \n";
+	// std::cout << vec.capacity() << " = capacity \n";
+	// vec.push_back(55);
+	// vec.push_back(66);
+
+	// vec.reserve(100);
+	// std::cout << vec.data() << " = data address\n";
+	// std::cout << vec[0] << "\n";
+	// std::cout << vec[1] << "\n";
+	// std::cout << vec.size() << " = size \n";
+	// std::cout << vec.capacity() << " = capacity \n";
+
+	// vec.pop_back();
+	// vec.pop_back();
+	// 	std::cout << vec[0] << "\n";
+	// std::cout << vec[1] << "\n";
 	
-	try
-	{
-		vec.at(16);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << "--\n";
-	}
+	// try
+	// {
+	// 	vec.at(16);
+	// }
+	// catch(const std::exception& e)
+	// {
+	// 	std::cerr << e.what() << "--\n";
+	// }
 	
 
 	// vec.shrink_to_fit();

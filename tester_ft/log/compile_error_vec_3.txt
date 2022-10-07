@@ -1,0 +1,6 @@
+-VECTOR TWO PARAM CONSTRUCTION TEST-
+
+./tmp/outfile_vec_3.cpp:24:21: error: no member named 'begin' in 'ft::vector<int>'
+                int ft_res = *(v2.begin() + i % N);
+                               ~~ ^
+1 error generated.

@@ -4,6 +4,8 @@
 // # include <limits>
 // # include <iostream>
 #include <memory>
+#include "iterator.hpp"
+#include "reverse_iterator.hpp"
 
 namespace ft
 {
@@ -20,13 +22,10 @@ namespace ft
 			typedef const value_type& const_reference;
 			typedef T* pointer;
 
-
-	// 		typedef pointer iterator;
-	// 		typedef const iterator const_iterator;
-	// 		    typedef __wrap_iter<pointer>                     iterator;
-    // typedef __wrap_iter<const_pointer>               const_iterator;
-    // typedef _VSTD::reverse_iterator<iterator>         reverse_iterator;
-    // typedef _VSTD::reverse_iterator<const_iterator>   const_reverse_iterator;
+			typedef ft::iterator<value_type> iterator;
+			typedef ft::iterator<value_type const> const_iterator;
+			typedef ft::reverse_iterator<iterator> reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
 		
 
 		public :
@@ -47,6 +46,12 @@ namespace ft
 						++__end_;
 					}
 				}
+			}
+
+			vector (const vector& x)
+			: _alloc(x._alloc), __begin_(u_nullptr), __end_(u_nullptr), _end_ca(u_nullptr)
+			{
+				this->assign(x.begin(), x.end());
 			}
 
 			~vector()
@@ -198,7 +203,101 @@ namespace ft
 				return allocator_type().max_size(); 
 			}
 
-			iterator begin() { return (_start); };
+			iterator begin() 
+			{ 
+				return (__begin_); 
+			}
+
+			const_iterator begin() const 
+			{
+				return (__begin_);
+			}
+
+			iterator end()
+			{
+				return (iterator(__end_));
+			}
+
+			const_iterator end() const
+			{
+				return (const_iterator(__end_));
+			}
+
+			reverse_iterator rbegin() 
+			{
+				return (reverse_iterator(this->end())); 
+			}
+
+			const_reverse_iterator rbegin() const 
+			{
+				return (reverse_iterator(this->end())); 
+			}
+
+			reverse_iterator rend() 
+			{ 
+				return (reverse_iterator(this->begin())); 
+			}
+
+			const_reverse_iterator rend() const 
+			{ 
+				return (reverse_iterator(this->begin())); 
+			}
+
+			void assign(size_type __n, const_reference __u)
+			{
+				this->clear();
+				if (__n == 0)
+					return ;
+				if (__n <= capacity())
+    			{
+					for(int n = 0; n < __n; n++)
+					{
+						_alloc.construct(__end_, __u);
+						++__end_;
+					} 
+				}
+				else
+				{
+					this->reserve(__n);
+					for(int n = 0; n < __n; n++)
+					{
+						_alloc.construct(__end_, __u);
+						++__end_;
+					}
+				}
+				_size = __n;
+			}
+
+			template <class InputIterator>
+			void assign(InputIterator first, InputIterator last, 
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
+			{
+				size_type __new_size = ft::distance(first, last);
+				this->clear();
+				if (__new_size <= capacity())
+				{
+					while( &(*first) != &(*last))
+					{
+						_alloc.construct(__end_, *first);
+						++first;
+						++__end_;
+					} 
+				}
+				else 
+				{
+					this->reserve(__new_size);
+					while( &(*first) != &(*last))
+					{
+						_alloc.construct(__end_, *first);
+						++first;
+						++__end_;
+					}
+
+				}
+				_size = __new_size;
+			}
+
+
 
 		private:
 
@@ -217,26 +316,7 @@ namespace ft
 				__end_ = new_last;
 			}
 
-			void _swap_to_new_buffer(value_type * buf, size_type newSize)
-			{
-				pointer prevBegin = __begin_;
-				pointer prevEnd = __end_;
-				size_type prevSize = size();
-				size_type prevCapacity = capacity();
 
-				__begin_ = buf->__begin_;
-				_end_cap_ = buf->_end_cap;
-				__end_ = __begin_;
-				_size = newSize;
-
-				while (prevBegin != prevEnd)
-				{
-					_alloc.construct(__end_, *prevBegin);
-					++__end_;
-					++prevBegin;
-				}
-				_alloc.deallocate(prevBegin - prevSize, prevCapacity);
-			}
 
 
 

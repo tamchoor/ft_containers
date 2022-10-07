@@ -1,0 +1,30 @@
+-VECTOR ERASE ITER TEST-
+
+./tmp/outfile_vec_11.cpp:33:38: error: no member named 'begin' in 'ft::vector<int>'
+                ft::vector<int>::iterator its = v2.begin() + it_pos;
+                                                ~~ ^
+./tmp/outfile_vec_11.cpp:35:41: error: no member named 'erase' in 'ft::vector<int>'
+                ft::vector<int>::iterator res_ft = v2.erase(v2.begin(), its);
+                                                   ~~ ^
+./tmp/outfile_vec_11.cpp:35:50: error: no member named 'begin' in 'ft::vector<int>'
+                ft::vector<int>::iterator res_ft = v2.erase(v2.begin(), its);
+                                                            ~~ ^
+./tmp/outfile_vec_11.cpp:36:43: error: no member named 'end' in 'ft::vector<int>'
+                if (res_std != v1.end() && res_ft != v2.end() && *res_std != *res_ft)
+                                                     ~~ ^
+./tmp/outfile_vec_11.cpp:38:43: error: no member named 'begin' in 'ft::vector<int>'
+                if (res_std - v1.begin() != res_ft - v2.begin())
+                                                     ~~ ^
+./tmp/outfile_vec_11.cpp:44:42: error: no member named 'begin' in 'ft::vector<int>'
+                if (!std::equal(v1.begin(),v1.end(),v2.begin()))
+                                                    ~~ ^
+./tmp/outfile_vec_11.cpp:64:6: error: no member named 'erase' in 'ft::vector<int>'
+                v2.erase(v2.begin(), v2.begin() + 1);
+                ~~ ^
+./tmp/outfile_vec_11.cpp:64:15: error: no member named 'begin' in 'ft::vector<int>'
+                v2.erase(v2.begin(), v2.begin() + 1);
+                         ~~ ^
+./tmp/outfile_vec_11.cpp:64:27: error: no member named 'begin' in 'ft::vector<int>'
+                v2.erase(v2.begin(), v2.begin() + 1);
+                                     ~~ ^
+9 errors generated.

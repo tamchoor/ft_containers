@@ -1,0 +1,6 @@
+-VECTOR POP BACK TEST-
+
+./tmp/outfile_vec_9.cpp:41:42: error: no member named 'begin' in 'ft::vector<int>'
+                if (!std::equal(v1.begin(),v1.end(),v2.begin()))
+                                                    ~~ ^
+1 error generated.

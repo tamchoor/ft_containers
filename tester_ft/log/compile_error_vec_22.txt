@@ -1,0 +1,6 @@
+-VECTOR COPY CONSTRUCTOR TEST-
+
+./tmp/outfile_vec_22.cpp:50:48: error: no member named 'begin' in 'ft::vector<int>'
+                if (!std::equal(v1_r.begin(),v1_r.end(),v2_r.begin()))
+                                                        ~~~~ ^
+1 error generated.
