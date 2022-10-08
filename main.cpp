@@ -42,7 +42,11 @@ int main()
 
 	if (!std::equal(vec.begin(),vec.end(),vec2.begin()))
 		std::cout << "it s not equal \n ";
-	std::cout << "it s equal \n ";
+	std::cout << "it s equal \n";
+
+	if (!std::equal(vec.begin(),vec.end(),stdvec.begin()))
+		std::cout << "it s not equal \n ";
+	std::cout << "it s equal \n";
 
 	return 0;
 }

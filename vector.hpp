@@ -158,7 +158,7 @@ namespace ft
 				return begin() + i;
 			}
 
-			void					insert(iterator position, size_type j, const value_type& val)
+			void insert(iterator position, size_type j, const value_type& val)
 			{
 				size_type			i = position - begin();
 				size_type			prevSize = size();
