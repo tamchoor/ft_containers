@@ -1,6 +1,11 @@
 -VECTOR COPY CONSTRUCTOR TEST-
 
-./tmp/outfile_vec_22.cpp:50:48: error: no member named 'begin' in 'ft::vector<int>'
-                if (!std::equal(v1_r.begin(),v1_r.end(),v2_r.begin()))
-                                                        ~~~~ ^
+In file included from ./tmp/outfile_vec_22.cpp:4:
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:54:6: error: field '_alloc' will be initialized after field '__begin_' [-Werror,-Wreorder-ctor]
+                        : _alloc(x._alloc), __begin_(u_nullptr), __end_(u_nullptr), _end_cap_(u_nullptr)
+                          ^~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~
+                          __begin_(u_nullptr) __end_(u_nullptr)  _end_cap_(u_nullptr) _alloc(x._alloc)
+./tmp/outfile_vec_22.cpp:34:19: note: in instantiation of member function 'ft::vector<int>::vector' requested here
+                ft::vector<int> v2_r(v2);
+                                ^
 1 error generated.

@@ -78,6 +78,9 @@ int main()
 	std::cout << vec2.size() << " = size \n";
 	std::cout << vec2.capacity() << " = capacity \n";
 
+	if (!std::equal(vec.begin(),vec.end(),vec2.begin()))
+		std::cout << "it s not equal \n ";
+	std::cout << "it s equal \n";
 
 	// vec.assign(3, 6);
 	// print_vector(vec);

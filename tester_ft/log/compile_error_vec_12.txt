@@ -1,6 +1,0 @@
--VECTOR CLEAR TEST-
-
-./tmp/outfile_vec_12.cpp:36:42: error: no member named 'begin' in 'ft::vector<int>'
-                if (!std::equal(v1.begin(),v1.end(),v2.begin()))
-                                                    ~~ ^
-1 error generated.

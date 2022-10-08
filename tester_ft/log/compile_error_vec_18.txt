@@ -1,6 +1,6 @@
 -VECTOR COMPARISON TEST-
 
-./tmp/outfile_vec_18.cpp:34:24: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
+./tmp/outfile_vec_18.cpp:36:24: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
                 if ((v1==v1_s) != (v2==v2_s)) ++err_count;
                                    ~~^ ~~~~
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/system_error:391:1: note: candidate function not viable: no known conversion from 'ft::vector<int>' to 'const std::error_code' for 1st argument
@@ -90,7 +90,7 @@ operator==(const basic_string<_CharT,_Traits,_Allocator>& __lhs,
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector:3359:1: note: candidate template ignored: could not match 'std::vector' against 'ft::vector'
 operator==(const vector<_Tp, _Allocator>& __x, const vector<_Tp, _Allocator>& __y)
 ^
-./tmp/outfile_vec_18.cpp:35:23: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
+./tmp/outfile_vec_18.cpp:37:23: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
                 if ((v1<v1_s) != (v2<v2_s)) ++err_count;
                                   ~~^~~~~
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/system_error:307:1: note: candidate function not viable: no known conversion from 'ft::vector<int>' to 'const std::error_condition' for 1st argument
@@ -153,7 +153,7 @@ operator< (const _CharT* __lhs,
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector:3376:1: note: candidate template ignored: could not match 'std::vector' against 'ft::vector'
 operator< (const vector<_Tp, _Allocator>& __x, const vector<_Tp, _Allocator>& __y)
 ^
-./tmp/outfile_vec_18.cpp:36:24: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
+./tmp/outfile_vec_18.cpp:38:24: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
                 if ((v1!=v1_s) != (v2!=v2_s)) ++err_count;
                                    ~~^ ~~~~
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/system_error:420:1: note: candidate function not viable: no known conversion from 'ft::vector<int>' to 'const std::error_code' for 1st argument
@@ -240,7 +240,7 @@ operator!=(const basic_string<_CharT, _Traits, _Allocator>& __lhs,
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector:3368:1: note: candidate template ignored: could not match 'std::vector' against 'ft::vector'
 operator!=(const vector<_Tp, _Allocator>& __x, const vector<_Tp, _Allocator>& __y)
 ^
-./tmp/outfile_vec_18.cpp:37:23: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
+./tmp/outfile_vec_18.cpp:39:23: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
                 if ((v1>v1_s) != (v2>v2_s)) ++err_count;
                                   ~~^~~~~
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/pair.h:345:1: note: candidate template ignored: could not match 'pair' against 'vector'
@@ -297,7 +297,7 @@ operator> (const _CharT* __lhs,
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector:3384:1: note: candidate template ignored: could not match 'std::vector' against 'ft::vector'
 operator> (const vector<_Tp, _Allocator>& __x, const vector<_Tp, _Allocator>& __y)
 ^
-./tmp/outfile_vec_18.cpp:38:24: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
+./tmp/outfile_vec_18.cpp:40:24: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
                 if ((v1<=v1_s) != (v2<=v2_s)) ++err_count;
                                    ~~^ ~~~~
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/pair.h:361:1: note: candidate template ignored: could not match 'pair' against 'vector'
@@ -354,7 +354,7 @@ operator<=(const _CharT* __lhs,
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector:3400:1: note: candidate template ignored: could not match 'std::vector' against 'ft::vector'
 operator<=(const vector<_Tp, _Allocator>& __x, const vector<_Tp, _Allocator>& __y)
 ^
-./tmp/outfile_vec_18.cpp:39:24: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
+./tmp/outfile_vec_18.cpp:41:24: error: invalid operands to binary expression ('ft::vector<int>' and 'ft::vector<int>')
                 if ((v1>=v1_s) != (v2>=v2_s)) ++err_count;
                                    ~~^ ~~~~
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/pair.h:353:1: note: candidate template ignored: could not match 'pair' against 'vector'

@@ -1,6 +1,8 @@
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 
+#include <vector>
+
 // # include <limits>
 // # include <iostream>
 #include <memory>
@@ -49,7 +51,7 @@ namespace ft
 			}
 
 			vector (const vector& x)
-			: _alloc(x._alloc), __begin_(u_nullptr), __end_(u_nullptr), _end_ca(u_nullptr)
+			: _alloc(x._alloc), __begin_(u_nullptr), __end_(u_nullptr), _end_cap_(u_nullptr)
 			{
 				this->assign(x.begin(), x.end());
 			}
@@ -132,7 +134,7 @@ namespace ft
 				}
 			}
 
-			void        resize (size_type n, value_type val = value_type())
+			void resize (size_type n, value_type val = value_type())
 			{
 				if (n > max_size())
 					throw (std::length_error("vector::resize:: n > max"));
@@ -145,7 +147,57 @@ namespace ft
 					}
 				}
 				else
-					this->insert(this->end(), n - this->size(), val);
+					insert(this->end(), n - this->size(), val);
+			}
+
+			iterator insert(const_iterator __position, const_reference __x)
+			{
+				size_type			i = __position - begin();
+
+				insert(__position, 1, __x);
+				return begin() + i;
+			}
+
+			void					insert(iterator position, size_type j, const value_type& val)
+			{
+				size_type			i = position - begin();
+				size_type			prevSize = size();
+
+				if ((size() + j) > capacity())
+					reserve(size() + j);
+				for (size_type k = j + prevSize - 1; k > i + j - 1; k--)
+				{
+					_alloc.construct((__begin_ + k), *(__begin_ + k - j));
+					_alloc.destroy((__begin_ + k - j));
+				}
+				for (size_type l = i; l < i + j; l++)
+				{
+					_alloc.construct((__begin_ +l), val);
+				}
+				__end_ = __begin_ + _size;
+			}
+
+			template <class InputIterator>
+			void	insert( iterator position, InputIterator first, InputIterator last,
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
+			{
+				size_type			i = position - begin();
+				size_type			j = ft::distance(first, last);
+				size_type			prevSize = size();
+
+				if ((size() + j) > capacity())
+					reserve(size() + j);
+				for (size_type k = j + prevSize - 1; k > i + j - 1; k--)
+				{
+					_alloc.construct((__begin_ + k), *(__begin_ + k - j));
+					_alloc.destroy((__begin_ + k - j));
+				}
+				for (size_type l = i; l < i + j; l++)
+				{
+					_alloc.construct((__begin_ +l), *first);
+					++first;
+				}
+				__end_ = __begin_ + _size;
 			}
 
 			void push_back(const_reference val)
@@ -315,11 +367,6 @@ namespace ft
 					_alloc.destroy(--__soon_to_be_end);
 				__end_ = new_last;
 			}
-
-
-
-
-
 	};
 }
 

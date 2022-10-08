@@ -1,8 +1,39 @@
 #ifndef ITERATOR_HPP
 # define ITERATOR_HPP
 
+// # include <__iterator/iterator_traits.h>
 namespace ft
 {
+
+	template < class iter >
+	struct iterator_traits
+	{
+		typedef typename iter::difference_type		difference_type;
+		typedef typename iter::value_type			value_type;
+		typedef typename iter::pointer				pointer;
+		typedef typename iter::reference			reference;
+		typedef typename iter::iterator_category	iterator_category;
+	};
+
+	template < class T >
+	struct iterator_traits< T* >
+	{
+		typedef ptrdiff_t								difference_type;
+		typedef T										value_type;
+		typedef T*										pointer;
+		typedef T&										reference;
+		typedef std::random_access_iterator_tag			iterator_category;
+	};
+
+	template <class T>
+	struct iterator_traits<const T*>
+	{
+		typedef ptrdiff_t								difference_type;
+		typedef T										value_type;
+		typedef const T*								pointer;
+		typedef const T&								reference;
+		typedef std::random_access_iterator_tag			iterator_category;
+	};
 
 template<typename T>
 class iterator
@@ -14,6 +45,9 @@ class iterator
 		typedef value_type& reference;
 		typedef value_type const * const_pointer;
 		typedef value_type const & const_reference;
+		typedef std::random_access_iterator_tag iterator_category;
+		typedef iterator< const T > const_iterator;
+
 	
 	protected:
 		pointer p;
@@ -127,17 +161,7 @@ class iterator
 		}
 
 };
-		template<class InputIterator>
-        typename iterator<InputIterator>::difference_type distance (InputIterator first, InputIterator last)
-        {
-            typename iterator<InputIterator>::difference_type rtn = 0;
-            while (first != last)
-            {
-                first++;
-                rtn++;
-            }
-            return (rtn);
-        };
+		
 		// template<bool Cond, class T = void> struct enable_if {};
 		// template<class T> struct enable_if<true, T> { typedef T type; };
 
@@ -213,9 +237,24 @@ class iterator
     template <typename T>
         struct is_integral : public is_integral_type<T> { };
 
-	template<bool Cond, class T = void> struct enable_if {};
-    template<class T> struct enable_if<true, T> { typedef T type; };
+	template<bool Cond, class T = void>
+	struct enable_if {};
+    template<class T> 
+	struct enable_if<true, T> { typedef T type; };
 
+
+	template<class InputIterator>
+        typename iterator_traits<InputIterator>::difference_type distance (InputIterator first, InputIterator last,
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
+        {
+            typename iterator_traits<InputIterator>::difference_type rtn = 0;
+            while (first != last)
+            {
+                ++first;
+                ++rtn;
+            }
+            return (rtn);
+        };
 	static class nullptr_t
 {
     public:

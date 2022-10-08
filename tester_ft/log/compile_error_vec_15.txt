@@ -1,21 +1,27 @@
 -VECTOR INSERT POS TEST-
 
-./tmp/outfile_vec_15.cpp:33:38: error: no member named 'begin' in 'ft::vector<int>'
-                ft::vector<int>::iterator its = v2.begin() + it_pos;
-                                                ~~ ^
-./tmp/outfile_vec_15.cpp:35:41: error: no member named 'insert' in 'ft::vector<int>'
+./tmp/outfile_vec_15.cpp:37:41: error: no matching member function for call to 'insert'
                 ft::vector<int>::iterator res_ft = v2.insert(its, N);
-                                                   ~~ ^
-./tmp/outfile_vec_15.cpp:38:43: error: no member named 'begin' in 'ft::vector<int>'
-                if (res_std - v1.begin() != res_ft - v2.begin())
-                                                     ~~ ^
-./tmp/outfile_vec_15.cpp:44:42: error: no member named 'begin' in 'ft::vector<int>'
-                if (!std::equal(v1.begin(),v1.end(),v2.begin()))
-                                                    ~~ ^
-./tmp/outfile_vec_15.cpp:64:6: error: no member named 'insert' in 'ft::vector<int>'
+                                                   ~~~^~~~~~
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:153:13: note: candidate function not viable: no known conversion from 'iterator<ft::vector<int>::value_type>' to 'iterator<const ft::vector<int>::value_type>' for 1st argument
+                        iterator insert(const_iterator __position, const_reference __x)
+                                 ^
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:161:13: note: candidate function not viable: requires 3 arguments, but 2 were provided
+                        void                                    insert(iterator position, size_type j, const value_type& val)
+                                                                ^
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:181:9: note: candidate function template not viable: requires at least 3 arguments, but 2 were provided
+                        void    insert( iterator position, InputIterator first, InputIterator last,
+                                ^
+./tmp/outfile_vec_15.cpp:66:6: error: no matching member function for call to 'insert'
                 v2.insert(v2.begin(), N);
-                ~~ ^
-./tmp/outfile_vec_15.cpp:64:16: error: no member named 'begin' in 'ft::vector<int>'
-                v2.insert(v2.begin(), N);
-                          ~~ ^
-6 errors generated.
+                ~~~^~~~~~
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:153:13: note: candidate function not viable: no known conversion from 'iterator<ft::vector<int>::value_type>' to 'iterator<const ft::vector<int>::value_type>' for 1st argument
+                        iterator insert(const_iterator __position, const_reference __x)
+                                 ^
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:161:13: note: candidate function not viable: requires 3 arguments, but 2 were provided
+                        void                                    insert(iterator position, size_type j, const value_type& val)
+                                                                ^
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:181:9: note: candidate function template not viable: requires at least 3 arguments, but 2 were provided
+                        void    insert( iterator position, InputIterator first, InputIterator last,
+                                ^
+2 errors generated.

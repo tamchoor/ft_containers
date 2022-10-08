@@ -3,6 +3,8 @@
 #include <vector>
 #include "vector.hpp"
 #include "old_vector.hpp"
+#include "reverse_iterator.hpp"
+#include "iterator.hpp"
 
 extern std::string	test_name;
 void test_vector_copy_range_ctor(long count){

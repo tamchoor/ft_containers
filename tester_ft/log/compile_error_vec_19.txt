@@ -1,12 +1,14 @@
 -VECTOR ASSIGN NUM TEST-
 
-./tmp/outfile_vec_19.cpp:28:6: error: no member named 'assign' in 'ft::vector<int>'
+In file included from ./tmp/outfile_vec_19.cpp:4:
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:305:23: error: comparison of integers of different signs: 'int' and 'ft::vector<int>::size_type' (aka 'unsigned long') [-Werror,-Wsign-compare]
+                                        for(int n = 0; n < __n; n++)
+                                                       ~ ^ ~~~
+./tmp/outfile_vec_19.cpp:30:6: note: in instantiation of member function 'ft::vector<int>::assign' requested here
                 v2.assign(num, fill);
-                ~~ ^
-./tmp/outfile_vec_19.cpp:46:42: error: no member named 'begin' in 'ft::vector<int>'
-                if (!std::equal(v1.begin(),v1.end(),v2.begin()))
-                                                    ~~ ^
-./tmp/outfile_vec_19.cpp:66:6: error: no member named 'assign' in 'ft::vector<int>'
-                v2.assign(N * N, M);
-                ~~ ^
-3 errors generated.
+                   ^
+In file included from ./tmp/outfile_vec_19.cpp:4:
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:314:23: error: comparison of integers of different signs: 'int' and 'ft::vector<int>::size_type' (aka 'unsigned long') [-Werror,-Wsign-compare]
+                                        for(int n = 0; n < __n; n++)
+                                                       ~ ^ ~~~
+2 errors generated.
