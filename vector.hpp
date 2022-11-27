@@ -1,17 +1,15 @@
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 
-#include <vector>
+#include <iostream>
 
-// # include <limits>
-// # include <iostream>
 #include <memory>
 #include "iterator.hpp"
 #include "reverse_iterator.hpp"
 
 namespace ft
 {
-	template < class T, class Allocator = std::allocator<T> > /* = allocator<_Tp> */
+	template < class T, class Allocator = std::allocator<T> >
 	class vector 
 	{
 		public :
@@ -121,7 +119,7 @@ namespace ft
 
 					__begin_ = _alloc.allocate(newSize);
 					__end_ = __begin_;
-					_size = newSize;
+					_size = 0;
 					_end_cap_ = __begin_ + newSize;
 
 					while (prevBegin != prevEnd)
@@ -129,6 +127,7 @@ namespace ft
 						_alloc.construct(__end_, *prevBegin);
 						++__end_;
 						++prevBegin;
+						++_size;
 					}
 					_alloc.deallocate(prevBegin - prevSize, prevCapacity);
 				}
@@ -140,17 +139,22 @@ namespace ft
 					throw (std::length_error("vector::resize:: n > max"));
 				else if (n < size())
 				{
-					while (size() > n)
+					while (n < size())
 					{
 						--__end_;
 						_alloc.destroy(__end_);
 					}
 				}
 				else
+				{
 					insert(this->end(), n - this->size(), val);
+					__end_ = __begin_ + n;
+					_size = n;
+				}
+					
 			}
 
-			iterator insert(const_iterator __position, const_reference __x)
+			iterator insert(iterator __position, const_reference __x)
 			{
 				size_type			i = __position - begin();
 
@@ -158,56 +162,110 @@ namespace ft
 				return begin() + i;
 			}
 
-			void insert(iterator position, size_type j, const value_type& val)
+			void insert(iterator position, size_type countNewElem, const value_type& val)
 			{
-				size_type			i = position - begin();
+				size_type			pozForInsert = position - begin();
 				size_type			prevSize = size();
+				size_type			empty_cap = ft::distance(__end_, _end_cap_);
 
-				if ((size() + j) > capacity())
-					reserve(size() + j);
-				for (size_type k = j + prevSize - 1; k > i + j - 1; k--)
+
+				if (countNewElem > 0)
 				{
-					_alloc.construct((__begin_ + k), *(__begin_ + k - j));
-					_alloc.destroy((__begin_ + k - j));
+					if (countNewElem <= empty_cap)
+					{
+						if (position == __end_)
+						{
+							while (countNewElem > 0)
+							{
+								_alloc.construct(__end_ , val);
+								++__end_;
+								--countNewElem;
+								++_size;
+							}
+						}
+						else
+						{
+							for (size_type k = countNewElem + prevSize - 1; k > pozForInsert + countNewElem - 1; k--)
+							{
+								_alloc.construct((__begin_ + k), *(__begin_ + k - countNewElem));
+								_alloc.destroy((__begin_ + k - countNewElem));
+							}
+							for (size_type l = pozForInsert; l < pozForInsert + countNewElem; l++)
+							{
+								_alloc.construct((__begin_ +l), val);
+								++_size;
+							}
+							__end_ = __begin_ + _size;
+						}
+					}
+					else 
+					{
+						size_type newCap = __recommend(size() + countNewElem);
+						if (newCap > max_size())
+							throw std::length_error("vector::reserve:: n > max");;
+						pointer n__begin_ = _alloc.allocate(newCap);
+						pointer n__end_ = n__begin_;
+						iterator prev_begin = begin();
+						size_type i = 0;
+						while (i < countNewElem + prevSize)
+						{
+							if (prev_begin == position)
+							{
+								size_type k = 0;
+								while (k++ < countNewElem)
+								{
+									_alloc.construct(n__end_++, val);
+									++i;
+								}
+							}
+							_alloc.construct(n__end_++, *prev_begin++);
+							++i;
+						}
+						for (i = 0; i < prevSize; i++)
+							_alloc.destroy((__begin_ + i));
+						_alloc.deallocate(__begin_, capacity());
+
+						__begin_ = n__begin_;
+						__end_ = n__end_;
+						_end_cap_ = n__begin_ + newCap;
+						_size = countNewElem + prevSize;
+					}
 				}
-				for (size_type l = i; l < i + j; l++)
-				{
-					_alloc.construct((__begin_ +l), val);
-				}
-				__end_ = __begin_ + _size;
 			}
 
 			template <class InputIterator>
 			void	insert( iterator position, InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
 			{
-				size_type			i = position - begin();
-				size_type			j = ft::distance(first, last);
+				size_type			pozForInsert = position - begin();
+				size_type			countNewElem = ft::distance(first, last);
 				size_type			prevSize = size();
-
-				if ((size() + j) > capacity())
-					reserve(size() + j);
-				for (size_type k = j + prevSize - 1; k > i + j - 1; k--)
+				
+				if (countNewElem > 0)
 				{
-					_alloc.construct((__begin_ + k), *(__begin_ + k - j));
-					_alloc.destroy((__begin_ + k - j));
+					if ((size() + countNewElem) > capacity())
+						reserve(__recommend(size() + countNewElem));
+					for (size_type k = countNewElem + prevSize - 1; k > pozForInsert + countNewElem - 1; k--)
+					{
+						_alloc.construct((__begin_ + k), *(__begin_ + k - countNewElem));
+						_alloc.destroy((__begin_ + k - countNewElem));
+					}
+					for (size_type l = pozForInsert; l < pozForInsert + countNewElem; l++)
+					{
+						_alloc.construct((__begin_ +l), *first);
+						++first;
+						++_size;
+					}
+					__end_ = __begin_ + _size;
 				}
-				for (size_type l = i; l < i + j; l++)
-				{
-					_alloc.construct((__begin_ +l), *first);
-					++first;
-				}
-				__end_ = __begin_ + _size;
 			}
 
 			void push_back(const_reference val)
 			{
 				size_type _capacity = capacity();
-				if (_size == _capacity && _size > 7)
-					reserve(_capacity * 1.5);
-				else if (_size == _capacity)
-					reserve(_capacity + 1);
-				if (_size < _capacity)
+				if (size() == _capacity)
+					reserve(__recommend(_capacity + 1));
+				if (size() < capacity())
 				{
 					_alloc.construct(__end_, val);
 					++__end_;
@@ -217,13 +275,31 @@ namespace ft
 
 			void pop_back()
 			{
-				if (!empty())
-				{
-					_alloc.destroy(&this->back());
-					--__end_;
-					--_size;
-				}
+				_alloc.destroy(&this->back());
+				--__end_;
+				--_size;
 			}
+
+			iterator erase(iterator position) 
+			{
+				return (this->erase(position, position + 1));
+			}
+
+			iterator erase(iterator first, iterator last) 
+			{
+
+				pointer p_first = &(*first);
+				for (; &(*first) != &(*last); first++)
+					_alloc.destroy(&(*first));
+				for (int i = 0; i < __end_ - &(*last); i++)
+				{
+					_alloc.construct(p_first + i, *(&(*last) + i));
+					_alloc.destroy(&(*last) + i);
+				}
+				__end_ -= (&(*last) - p_first);
+				return (iterator(p_first));
+			}
+			
 
 			bool empty() const
 			{
@@ -310,7 +386,7 @@ namespace ft
 				}
 				else
 				{
-					this->reserve(__n);
+					this->reserve(__recommend(__n));
 					for(int n = 0; n < __n; n++)
 					{
 						_alloc.construct(__end_, __u);
@@ -337,7 +413,7 @@ namespace ft
 				}
 				else 
 				{
-					this->reserve(__new_size);
+					this->reserve(__recommend(__new_size));
 					while( &(*first) != &(*last))
 					{
 						_alloc.construct(__end_, *first);
@@ -367,7 +443,102 @@ namespace ft
 					_alloc.destroy(--__soon_to_be_end);
 				__end_ = new_last;
 			}
+
+			size_type __recommend(size_type __new_size) const
+			{
+				const size_type __ms = max_size();
+
+				if (__new_size > __ms)
+					throw std::length_error("vector:: n > max");
+				const size_type __cap = capacity();
+				if (__cap >= __ms / 2)
+					return __ms;
+				return _VSTD::max<size_type>(2 * __cap, __new_size);
+			}
+
+			void print_vector()
+			{
+				iterator it = begin();
+				for (;it !=  end(); it++)
+					std::cout << *it << ' ';
+				std::cout << '\n';
+				std::cout << size() << " = size \n";
+				std::cout << capacity() << " = capacity \n";
+			}
 	};
+
+template<typename T>
+bool operator==(vector<T> const &lhs, vector<T> const &rhs) {
+	if (lhs.size() != rhs.size())
+		return (false);
+	for (size_t i = 0; i < lhs.size(); i++)
+		if (lhs[i] != rhs[i])
+			return (false);
+	return (true);
+}
+
+template<class InputIterator1, class InputIterator2>
+bool lexicographical_compare(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2) {
+	while (first1 != last1) {
+		if (first2 == last2 || *first2 < *first1)
+			return (false);
+		else if (*first1 < *first2)
+			return (true);
+		++first1;
+		++first2;
+	}
+	return (first2 != last2);
+}
+
+template<class InputIt1, class InputIt2>
+bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2)
+{
+	for (; first1 != last1; ++first1, ++first2) {
+		if (!(*first1 == *first2)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+template<class InputIt1, class InputIt2, class BinaryPredicate>
+bool equal(InputIt1 first1, InputIt1 last1, 
+		InputIt2 first2, BinaryPredicate p)
+{
+	for (; first1 != last1; ++first1, ++first2) {
+		if (!p(*first1, *first2)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
+template<typename T>
+bool operator!=(vector<T> const &lhs, vector<T> const &rhs) {
+	return (!(lhs == rhs));
+}
+
+template<typename T>
+bool operator<(vector<T> const &lhs, vector<T> const &rhs) {
+	return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+}
+
+template<typename T>
+bool operator<=(vector<T> const &lhs, vector<T> const &rhs) {
+	return (!(rhs < lhs));
+}
+
+template<typename T>
+bool operator>(vector<T> const &lhs, vector<T> const &rhs) {
+	return (rhs < lhs);
+}
+
+template<typename T>
+bool operator>=(vector<T> const &lhs, vector<T> const &rhs) {
+	return (!(lhs < rhs));
+}
+
 }
 
 #endif

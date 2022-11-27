@@ -1,9 +1,0 @@
--VECTOR ERASE ITER TEST-
-
-./tmp/outfile_vec_11.cpp:37:41: error: no member named 'erase' in 'ft::vector<int>'
-                ft::vector<int>::iterator res_ft = v2.erase(v2.begin(), its);
-                                                   ~~ ^
-./tmp/outfile_vec_11.cpp:66:6: error: no member named 'erase' in 'ft::vector<int>'
-                v2.erase(v2.begin(), v2.begin() + 1);
-                ~~ ^
-2 errors generated.

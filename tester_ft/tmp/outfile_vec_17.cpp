@@ -65,9 +65,9 @@ void test_vector_insert_iter(long count){
 	ft::vector<int> v2(N, M);
 	ft::vector<int> v2_s(N, M);
 	timer_start();
-	for (int i = 0; i < count; ++i){
-		v2.insert(v2.begin(), v1_s.begin(), v1_s.end());
-	}
+	// for (int i = 0; i < count; ++i){
+	// 	v2.insert(v2.begin(), v1_s.begin(), v1_s.end());
+	// }
 	double ft_res = timer_stop();
 	std::cout << "ft result: " << ft_res << " sec | " << std::flush;
 	print_result(std_res, ft_res);

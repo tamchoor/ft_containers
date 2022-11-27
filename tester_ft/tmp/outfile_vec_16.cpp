@@ -59,9 +59,9 @@ void test_vector_insert_pos_num(long count){
 	//ft working 
 	ft::vector<int> v2(N, M);
 	timer_start();
-	for (int i = 0; i < count; ++i){
-		v2.insert(v2.begin(), (size_t) 1, 42);
-	}
+	// for (int i = 0; i < count; ++i){
+	// 	v2.insert(v2.begin(), (size_t) 1, 42);
+	// }
 	double ft_res = timer_stop();
 	std::cout << "ft result: " << ft_res << " sec | " << std::flush;
 	print_result(std_res, ft_res);

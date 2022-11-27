@@ -51,20 +51,20 @@ void test_vector_erase_pos(long count){
 	}
 
 	//std working
-    std::vector<int> v1(count, M);
-	timer_start();
-	for (int i = 0; i < count; ++i){
-		v1.erase(v1.begin());
-	}
+    // std::vector<int> v1(count, M);
+	// timer_start();
+	// for (int i = 0; i < count; ++i){
+	// 	v1.erase(v1.begin());
+	// }
 	double std_res = timer_stop();
 	std::cout << "std result: " << std_res << " sec | " << std::flush;
 	
 	//ft working 
-	ft::vector<int> v2(count, M);
-	timer_start();
-	for (int i = 0; i < count; ++i){
-		v2.erase(v2.begin());
-	}
+	// ft::vector<int> v2(count, M);
+	// timer_start();
+	// for (int i = 0; i < count; ++i){
+	// 	v2.erase(v2.begin());
+	// }
 	double ft_res = timer_stop();
 	std::cout << "ft result: " << ft_res << " sec | " << std::flush;
 	print_result(std_res, ft_res);

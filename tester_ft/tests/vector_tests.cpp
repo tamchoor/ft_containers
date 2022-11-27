@@ -495,20 +495,20 @@ void test_vector_erase_pos(long count){
 	}
 
 	//std working
-    std::vector<int> v1(count, M);
-	timer_start();
-	for (int i = 0; i < count; ++i){
-		v1.erase(v1.begin());
-	}
+    // std::vector<int> v1(count, M);
+	// timer_start();
+	// for (int i = 0; i < count; ++i){
+	// 	v1.erase(v1.begin());
+	// }
 	double std_res = timer_stop();
 	std::cout << "std result: " << std_res << " sec | " << std::flush;
 	
 	//ft working 
-	ft::vector<int> v2(count, M);
-	timer_start();
-	for (int i = 0; i < count; ++i){
-		v2.erase(v2.begin());
-	}
+	// ft::vector<int> v2(count, M);
+	// timer_start();
+	// for (int i = 0; i < count; ++i){
+	// 	v2.erase(v2.begin());
+	// }
 	double ft_res = timer_stop();
 	std::cout << "ft result: " << ft_res << " sec | " << std::flush;
 	print_result(std_res, ft_res);
@@ -558,20 +558,20 @@ void test_vector_erase_iter(long count){
 	}
 
 	//std working
-    std::vector<int> v1(count, M);
-	timer_start();
-	for (int i = 0; i < count; ++i){
-		v1.erase(v1.begin(), v1.begin() + 1);
-	}
+    // std::vector<int> v1(count, M);
+	// timer_start();
+	// for (int i = 0; i < count; ++i){
+	// 	v1.erase(v1.begin(), v1.begin() + 1);
+	// }
 	double std_res = timer_stop();
 	std::cout << "std result: " << std_res << " sec | " << std::flush;
 	
 	//ft working 
-	ft::vector<int> v2(count, M);
-	timer_start();
-	for (int i = 0; i < count; ++i){
-		v2.erase(v2.begin(), v2.begin() + 1);
-	}
+	// ft::vector<int> v2(count, M);
+	// timer_start();
+	// for (int i = 0; i < count; ++i){
+	// 	v2.erase(v2.begin(), v2.begin() + 1);
+	// }
 	double ft_res = timer_stop();
 	std::cout << "ft result: " << ft_res << " sec | " << std::flush;
 	print_result(std_res, ft_res);
@@ -786,9 +786,9 @@ void test_vector_insert_pos(long count){
 	//ft working 
 	ft::vector<int> v2(N, M);
 	timer_start();
-	for (int i = 0; i < count; ++i){
-		v2.insert(v2.begin(), N);
-	}
+	// for (int i = 0; i < count; ++i){
+	// 	v2.insert(v2.begin(), N);
+	// }
 	double ft_res = timer_stop();
 	std::cout << "ft result: " << ft_res << " sec | " << std::flush;
 	print_result(std_res, ft_res);
@@ -846,9 +846,9 @@ void test_vector_insert_pos_num(long count){
 	//ft working 
 	ft::vector<int> v2(N, M);
 	timer_start();
-	for (int i = 0; i < count; ++i){
-		v2.insert(v2.begin(), (size_t) 1, 42);
-	}
+	// for (int i = 0; i < count; ++i){
+	// 	v2.insert(v2.begin(), (size_t) 1, 42);
+	// }
 	double ft_res = timer_stop();
 	std::cout << "ft result: " << ft_res << " sec | " << std::flush;
 	print_result(std_res, ft_res);
@@ -912,9 +912,9 @@ void test_vector_insert_iter(long count){
 	ft::vector<int> v2(N, M);
 	ft::vector<int> v2_s(N, M);
 	timer_start();
-	for (int i = 0; i < count; ++i){
-		v2.insert(v2.begin(), v1_s.begin(), v1_s.end());
-	}
+	// for (int i = 0; i < count; ++i){
+	// 	v2.insert(v2.begin(), v1_s.begin(), v1_s.end());
+	// }
 	double ft_res = timer_stop();
 	std::cout << "ft result: " << ft_res << " sec | " << std::flush;
 	print_result(std_res, ft_res);

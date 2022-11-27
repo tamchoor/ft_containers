@@ -14,7 +14,7 @@ inline _LIBCPP_INLINE_VISIBILITY __swap_result_t<_Tp> _LIBCPP_CONSTEXPR_AFTER_CX
         v3.swap(v4);
         ~~ ^
 In file included from ./tmp/outfile_vec_14.cpp:4:
-/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:54:6: error: field '_alloc' will be initialized after field '__begin_' [-Werror,-Wreorder-ctor]
+/Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:55:6: error: field '_alloc' will be initialized after field '__begin_' [-Werror,-Wreorder-ctor]
                         : _alloc(x._alloc), __begin_(u_nullptr), __end_(u_nullptr), _end_cap_(u_nullptr)
                           ^~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~
                           __begin_(u_nullptr) __end_(u_nullptr)  _end_cap_(u_nullptr) _alloc(x._alloc)

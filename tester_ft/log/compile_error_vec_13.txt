@@ -1,6 +1,14 @@
 -VECTOR REVERSE ITER TEST-
 
-./tmp/outfile_vec_13.cpp:42:12: error: no member named 'equal' in namespace 'ft'
-                if (!ft::equal(it_rb, it_re, its_rb))
-                     ~~~~^
+In file included from ./tmp/outfile_vec_13.cpp:4:
+In file included from /Users/anastasiadementeva/Desktop/projects/ft_containers/vector.hpp:11:
+/Users/anastasiadementeva/Desktop/projects/ft_containers/reverse_iterator.hpp:71:17: error: 'p' is a protected member of 'ft::iterator<int>'
+                return (other.p - this->p);
+                              ^
+./tmp/outfile_vec_13.cpp:40:31: note: in instantiation of member function 'ft::reverse_iterator<ft::iterator<int> >::operator-' requested here
+                if (it_rb - it_re != its_rb - its_re)
+                                            ^
+/Users/anastasiadementeva/Desktop/projects/ft_containers/iterator.hpp:53:11: note: can only access this member on an object of type 'ft::reverse_iterator<ft::iterator<int> >'
+                pointer p;
+                        ^
 1 error generated.

@@ -31,40 +31,81 @@ public:
 		iterator tmp(*this);
 		return (*--tmp);
 	}
-	const_reference operator*() const 
-	{
-		iterator tmp(*this);
-		return (*--tmp);
-	}
+
 	pointer operator->() 
 	{
 		iterator tmp(*this);
 		return (&*--tmp);
 	}
+
+	const_reference operator*() const 
+	{
+		iterator tmp(*this);
+		return (*--tmp);
+	}
+
 	const_pointer operator->() const 
 	{
 		iterator tmp(*this);
 		return (&*--tmp);
 	}
+
 	reverse_iterator operator++(int) 
 	{
 		reverse_iterator tmp(*this);
 		operator++();
 		return (tmp);
 	}
-	iterator &operator++() 
+
+	reverse_iterator &operator++() 
 	{
-		return (this->iterator::operator--());
+		this->iterator::operator--();
+		return (*this);
 	}
+
+
 	reverse_iterator operator--(int) 
 	{
 		reverse_iterator tmp(*this);
 		operator--();
 		return (tmp);
 	}
+
 	iterator &operator--() 
 	{
-		return (this->iterator::operator++());
+		this->iterator::operator++();
+		return (*this);
+	}
+
+	reverse_iterator  operator+(difference_type __n)
+	{
+		return reverse_iterator(this->iterator::operator-(__n));
+	}
+
+	reverse_iterator  operator+=(difference_type __n)
+	{
+		return reverse_iterator(this->iterator::operator-=(__n));
+	}
+
+	reverse_iterator  operator-(difference_type __n)
+	{
+		return reverse_iterator(this->iterator::operator+(__n));
+	}
+
+	reverse_iterator  operator-=(difference_type __n)
+	{
+		return reverse_iterator(this->iterator::operator+=(__n));
+	}
+
+	// reference         operator[](difference_type __n)
+	// {
+	// 	return *(*this + __n);
+	// }
+
+
+	typename iterator::difference_type operator-(reverse_iterator const &other) const 
+	{
+		return (other.p - this->p);
 	}
 };
 }

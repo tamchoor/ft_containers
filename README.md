@@ -1,5 +1,5 @@
 # ft_containers
-Implement a few container types of the C++ standard template library
+Implement vector container types of the C++ standard template library
 
 
 
@@ -15,9 +15,6 @@ Implement the following containers and turn in the necessary <container>.hpp fil
 
 You don’t have to do the vector<bool> specialization.
 
-         • map
-
-         • stack
 
 It will use your vector class as default underlying container. But it must still be compatible with other containers, the STL ones included.\
 
@@ -58,27 +55,3 @@ means using a simple array for map is not ok).
 • You must use std::allocator.
 
 • For non-member overloads, the keyword friend is allowed. Each use of friend must be justified and will be checked during evaluation.
-
-• Of course, for the implementation of map::value_compare, the keyword friend is allowed.
-
-
-		Testing
-
-
-You must also provide tests, at least a main.cpp, for your defense. You have to go further than the main given as example!
-
-• You must produce two binaries that run the same tests: one with your containers only, and the other one with the STL containers.
-
-• Compare outputs and performance / timing (your containers can be up to 20 times slower).
-
-• Test your containers with: ft::<container>.
-
-
-
-		Bonus part
-
-You will get extra points if you implement one last container:
-
-• set
-
-But this time, a Red-Black tree is mandatory.
